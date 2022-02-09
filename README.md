@@ -1,2 +1,3 @@
 # comp3021lab
-source code for comp3021 lab
+
+Kung Nam Leung 20596976
