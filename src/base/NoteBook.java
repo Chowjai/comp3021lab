@@ -118,7 +118,7 @@ public class NoteBook implements java.io.Serializable {
 		FileInputStream fis = null;
 	    ObjectInputStream in = null;
 	    try {
-	    	fis = new FileInputStream(file);
+	    	fis = new FileInputStream("test.ser");//file);
             in = new ObjectInputStream(fis);
             NoteBook n = (NoteBook) in.readObject();
             in.close();
@@ -128,5 +128,11 @@ public class NoteBook implements java.io.Serializable {
 	    }
 
 	}
+	
+	public void addFolder(String folderName) {
+	    // TO DO 
+		this.folders.add(new Folder(folderName));
+	}
+
 
 }

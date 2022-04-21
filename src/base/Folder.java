@@ -66,7 +66,7 @@ public class Folder implements Comparable<Folder>, java.io.Serializable {
 			for (String s1 : keyword) {
 				// for each of the keyword, split the condition by "or" && "OR"
 				s1 = s1.trim();
-				//System.out.println("s1: " + s1);
+				// System.out.println("s1: " + s1);
 				String s2[] = s1.split("\\bor|\\bOR");
 
 				// boolean isMatched2 = false; // flag for whether to put in matchList, matching
@@ -74,36 +74,55 @@ public class Folder implements Comparable<Folder>, java.io.Serializable {
 				boolean isMatched2 = false; // default false, matching either will be true
 				for (String s3 : s2) {
 					s3 = s3.trim();
-					//System.out.println("s3 :" + s3);
+					// System.out.println("s3 :" + s3);
 					if (n instanceof TextNote) {
 						// check both title and content
-						if (n.getTitle().toLowerCase().contains(s3.toLowerCase()) || ((TextNote) n).getContext().toLowerCase().contains(s3.toLowerCase())) {
+						if (n.getTitle().toLowerCase().contains(s3.toLowerCase())
+								|| ((TextNote) n).getContext().toLowerCase().contains(s3.toLowerCase())) {
 							// condition is matched
 							isMatched2 = true;
-							//System.out.println("inner loop suceed");
+							// System.out.println("inner loop suceed");
 						}
 					} else {
 						// check title
 						if (n.getTitle().toLowerCase().contains(s3.toLowerCase())) {
 							// condition is matched
 							isMatched2 = true;
-							//System.out.println("inner loop suceed");
+							// System.out.println("inner loop suceed");
 						}
 					}
 				}
 				if (isMatched2 == false) {
 					isMatched1 = false; // if the inner condition fails, the outer also fails
-					//System.out.println("inner loop fails");
+					// System.out.println("inner loop fails");
 					break;
 				}
 			}
 			if (isMatched1 == true) {
-				//System.out.println("outer loop suceed");
+				// System.out.println("outer loop suceed");
 				matchList.add(n); // all conditions met, thus add the note
 			} else {
-				//System.out.println("inner loop failed");
+				// System.out.println("inner loop failed");
 			}
 		}
 		return matchList;
 	}
+
+	public boolean removeNotes(String title) {
+		// TODO
+		// Given the title of the note, delete it from the folder.
+		// Return true if it is deleted successfully, otherwise return false.
+		
+		for (Note n:notes) {
+			if (n.getTitle().equals(title)) {
+				notes.remove(n);
+				return true;
+			}
+		}
+		
+		
+		return false;
+		
+	}
+
 }

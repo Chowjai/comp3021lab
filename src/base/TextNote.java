@@ -31,6 +31,10 @@ public class TextNote extends Note {
 	public String getContext() {
 		return this.context;
 	}
+	
+	public void setContext(String content) {
+		this.context = content;
+	}
 
 	/**
 	 * load a TextNote from File f
